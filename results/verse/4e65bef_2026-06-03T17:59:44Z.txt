@@ -1,0 +1,389 @@
+gFlex solver benchmarks
+======================================================================
+timestamp : 2026-06-03T17:59:44Z
+commit    : 4e65befddac44626140b446fd4977d6772d03f18 (dirty)
+branch    : master
+cpu       : AMD Ryzen 7 7840U w/ Radeon  780M Graphics
+cpu cores : 16
+ram       : 46.4 GiB
+os        : Linux-6.17.0-19-generic-x86_64-with-glibc2.39
+python    : 3.12.7
+numpy     : 1.26.4
+scipy     : 1.16.3
+
+--- 1D ---
+
+1D FD  (direct sparse LU)
+      n      Te profile   assemble(s)   direct(s)
+-------  --------------  ------------  ----------
+      100        constant        0.0006      0.0003
+      100      sinusoidal        0.0003      0.0001
+      100          abrupt        0.0002      0.0001
+      100        gradient        0.0002      0.0001
+      100      wide_range        0.0002      0.0001
+      100       tanh_step        0.0002      0.0001
+      100      noisy_mild        0.0002      0.0001
+      100    noisy_strong        0.0002      0.0001
+      100       corr_mild        0.0002      0.0001
+      100     corr_strong        0.0002      0.0001
+
+      500        constant        0.0002      0.0004
+      500      sinusoidal        0.0002      0.0003
+      500          abrupt        0.0003      0.0003
+      500        gradient        0.0002      0.0003
+      500      wide_range        0.0002      0.0003
+      500       tanh_step        0.0002      0.0003
+      500      noisy_mild        0.0002      0.0003
+      500    noisy_strong        0.0002      0.0003
+      500       corr_mild        0.0002      0.0003
+      500     corr_strong        0.0002      0.0003
+
+     2000        constant        0.0004      0.0010
+     2000      sinusoidal        0.0003      0.0010
+     2000          abrupt        0.0003      0.0009
+     2000        gradient        0.0003      0.0009
+     2000      wide_range        0.0003      0.0009
+     2000       tanh_step        0.0003      0.0009
+     2000      noisy_mild        0.0003      0.0009
+     2000    noisy_strong        0.0003      0.0010
+     2000       corr_mild        0.0003      0.0009
+     2000     corr_strong        0.0003      0.0009
+
+     5000        constant        0.0006      0.0022
+     5000      sinusoidal        0.0005      0.0024
+     5000          abrupt        0.0015      0.0023
+     5000        gradient        0.0005      0.0022
+     5000      wide_range        0.0005      0.0022
+     5000       tanh_step        0.0005      0.0023
+     5000      noisy_mild        0.0005      0.0023
+     5000    noisy_strong        0.0005      0.0023
+     5000       corr_mild        0.0005      0.0024
+     5000     corr_strong        0.0005      0.0023
+
+1D FFT
+       n     total (s)
+--------  ------------
+     100        0.0002
+     500        0.0001
+    2000        0.0001
+    5000        0.0001
+   20000        0.0028
+
+1D SAS
+       n     total (s)
+--------  ------------
+     100        0.0002
+     500        0.0002
+    2000        0.0002
+    5000        0.0005
+
+--- 2D ---
+
+2D FD  (direct sparse LU)
+      n×n      Te profile   assemble(s)   direct(s)
+---------  --------------  ------------  ----------
+      50×50        constant        0.0008      0.0111
+      50×50      sinusoidal        0.0009      0.0107
+      50×50   sinusoidal_45        0.0009      0.0107
+      50×50          abrupt        0.0010      0.0178
+      50×50       abrupt_45        0.0011      0.0112
+      50×50        gradient        0.0009      0.0147
+      50×50     gradient_45        0.0017      0.0115
+      50×50      wide_range        0.0010      0.0146
+      50×50   wide_range_45        0.0015      0.0136
+      50×50       tanh_step        0.0011      0.0107
+      50×50    tanh_step_45        0.0008      0.0111
+      50×50      noisy_mild        0.0009      0.0118
+      50×50    noisy_strong        0.0010      0.0117
+      50×50       corr_mild        0.0009      0.0107
+      50×50     corr_strong        0.0009      0.0106
+      50×50       disk_thin        0.0008      0.0106
+      50×50      disk_thick        0.0009      0.0110
+
+    100×100        constant        0.0083      0.0835
+    100×100      sinusoidal        0.0023      0.0765
+    100×100   sinusoidal_45        0.0023      0.0749
+    100×100          abrupt        0.0024      0.0813
+    100×100       abrupt_45        0.0035      0.0922
+    100×100        gradient        0.0023      0.0804
+    100×100     gradient_45        0.0035      0.0900
+    100×100      wide_range        0.0048      0.0968
+    100×100   wide_range_45        0.0025      0.0838
+    100×100       tanh_step        0.0022      0.0899
+    100×100    tanh_step_45        0.0031      0.1020
+    100×100      noisy_mild        0.0025      0.0922
+    100×100    noisy_strong        0.0029      0.0960
+    100×100       corr_mild        0.0031      0.0937
+    100×100     corr_strong        0.0053      0.0998
+    100×100       disk_thin        0.0049      0.0925
+    100×100      disk_thick        0.0036      0.0878
+
+    200×200        constant        0.0252      0.6947
+    200×200      sinusoidal        0.0210      0.7448
+    200×200   sinusoidal_45        0.0184      0.7169
+    200×200          abrupt        0.0173      0.7497
+    200×200       abrupt_45        0.0105      0.7434
+    200×200        gradient        0.0101      0.6357
+    200×200     gradient_45        0.0156      0.7516
+    200×200      wide_range        0.0226      0.6728
+    200×200   wide_range_45        0.0110      0.7117
+    200×200       tanh_step        0.0096      0.6538
+    200×200    tanh_step_45        0.0097      0.7476
+    200×200      noisy_mild        0.0118      0.7154
+    200×200    noisy_strong        0.0096      0.8565
+    200×200       corr_mild        0.0101      0.6660
+    200×200     corr_strong        0.0104      0.7040
+    200×200       disk_thin        0.0097      0.6932
+    200×200      disk_thick        0.0109      0.6993
+
+    400×400        constant        0.1405      5.5475
+    400×400      sinusoidal        0.1013      5.5165
+    400×400   sinusoidal_45        0.1198      5.5220
+    400×400          abrupt        0.1623      5.6101
+    400×400       abrupt_45        0.0863      5.6225
+    400×400        gradient        0.1107      5.5326
+    400×400     gradient_45        0.0965      5.6854
+    400×400      wide_range        0.1035      5.6473
+    400×400   wide_range_45        0.1035      5.7110
+    400×400       tanh_step        0.1034      5.4627
+    400×400    tanh_step_45        0.1319      5.5200
+    400×400      noisy_mild        0.0971      6.3151
+    400×400    noisy_strong        0.1123      6.4383
+    400×400       corr_mild        0.1287      5.6146
+    400×400     corr_strong        0.1088      5.7215
+    400×400       disk_thin        0.0993      5.5877
+    400×400      disk_thick        0.1198      5.6639
+
+2D FD  non-square domains  (direct sparse LU)
+      nx×ny      Te profile   assemble(s)   direct(s)
+-----------  --------------  ------------  ----------
+       100×50        constant        0.0028      0.0413
+       100×50       tanh_step        0.0017      0.0225
+       100×50       corr_mild        0.0016      0.0219
+       100×50      wide_range        0.0018      0.0214
+       100×50       abrupt_45        0.0014      0.0286
+       100×50      disk_thick        0.0014      0.0215
+
+       50×100        constant        0.0013      0.0268
+       50×100       tanh_step        0.0019      0.0242
+       50×100       corr_mild        0.0015      0.0300
+       50×100      wide_range        0.0015      0.0270
+       50×100       abrupt_45        0.0015      0.0213
+       50×100      disk_thick        0.0015      0.0286
+
+      200×100        constant        0.0067      0.2060
+      200×100       tanh_step        0.0042      0.2087
+      200×100       corr_mild        0.0045      0.2075
+      200×100      wide_range        0.0058      0.2032
+      200×100       abrupt_45        0.0043      0.2046
+      200×100      disk_thick        0.0043      0.1935
+
+      100×200        constant        0.0109      0.1791
+      100×200       tanh_step        0.0042      0.2148
+      100×200       corr_mild        0.0047      0.1976
+      100×200      wide_range        0.0042      0.2117
+      100×200       abrupt_45        0.0118      0.1895
+      100×200      disk_thick        0.0042      0.1830
+
+       200×50        constant        0.0045      0.0745
+       200×50       tanh_step        0.0036      0.0648
+       200×50       corr_mild        0.0031      0.0735
+       200×50      wide_range        0.0030      0.0717
+       200×50       abrupt_45        0.0036      0.0778
+       200×50      disk_thick        0.0034      0.0839
+
+       50×200        constant        0.0020      0.0560
+       50×200       tanh_step        0.0024      0.0671
+       50×200       corr_mild        0.0023      0.0648
+       50×200      wide_range        0.0023      0.0619
+       50×200       abrupt_45        0.0034      0.0618
+       50×200      disk_thick        0.0031      0.0725
+
+      400×100        constant        0.0256      0.5540
+      400×100       tanh_step        0.0108      0.4712
+      400×100       corr_mild        0.0093      0.5161
+      400×100      wide_range        0.0094      0.5295
+      400×100       abrupt_45        0.0134      0.5301
+      400×100      disk_thick        0.0092      0.5230
+
+      100×400        constant        0.0343      0.4725
+      100×400       tanh_step        0.0203      0.4652
+      100×400       corr_mild        0.0162      0.4349
+      100×400      wide_range        0.0092      0.4309
+      100×400       abrupt_45        0.0094      0.4753
+      100×400      disk_thick        0.0172      0.4188
+
+       200×25        constant        0.0015      0.0143
+       200×25       tanh_step        0.0013      0.0138
+       200×25       corr_mild        0.0014      0.0145
+       200×25      wide_range        0.0021      0.0189
+       200×25       abrupt_45        0.0028      0.0199
+       200×25      disk_thick        0.0018      0.0144
+
+       400×50        constant        0.0045      0.1555
+       400×50       tanh_step        0.0129      0.1476
+       400×50       corr_mild        0.0057      0.1609
+       400×50      wide_range        0.0042      0.1406
+       400×50       abrupt_45        0.0061      0.1696
+       400×50      disk_thick        0.0044      0.1286
+
+2D FFT
+      n×n     total (s)
+---------  ------------
+    50×50        0.0027
+  100×100        0.0008
+  500×500        0.0094
+1000×1000        0.0395
+
+2D SAS  (O(N² log N) fftconvolve — load-pattern-independent)
+      n×n     total (s)
+---------  ------------
+    10×10        0.0004
+    25×25        0.0010
+    50×50        0.0042
+  100×100        0.0263
+
+2D load geometry  (FD direct + FFT + SAS, constant Te, square grids)
+  All three methods are load-pattern-independent (SAS uses fftconvolve).
+  '--' in SAS column = n exceeds per-pattern cap (conservative; can raise).
+  'full' with FD: 0Displacement0Slope BCs give bowl-shaped deflection.
+      n×n    pattern     N_load      FD(s)     FFT(s)     SAS(s)
+---------  ---------  ---------  ---------  ---------  ---------
+      25×25      small          9     0.0028     0.0010     0.0009
+               quarter        144     0.0031     0.0010     0.0011
+                  full        625     0.0021     0.0009     0.0014
+
+      50×50      small          9     0.0110     0.0011     0.0042
+               quarter        625     0.0119     0.0009     0.0041
+                  full       2500     0.0118     0.0009     0.0046
+
+    100×100      small          9     0.0984     0.0046     0.0250
+               quarter       2500     0.0984     0.0017     0.0228
+                  full      10000     0.0999     0.0014         --
+
+    200×200      small          9     0.7549     0.0021     0.0947
+               quarter      10000     0.7679     0.0015         --
+                  full      40000     0.7354     0.0022         --
+
+--- LU cache (fd_solve() path) ---
+
+LU cache  (repeated solves, load-only changes)
+  n_solves = 10
+     grid      Te profile   t_False(s)   t_True(s)   t_no_check(s)   speedup
+---------  --------------  -----------  ----------  --------------  --------
+     1D-500        constant       0.0018      0.0011          0.0004      4.75x
+     1D-500      sinusoidal       0.0018      0.0007          0.0004      4.87x
+     1D-500          abrupt       0.0023      0.0008          0.0003      7.00x
+     1D-500       tanh_step       0.0017      0.0007          0.0006      2.76x
+     1D-500       corr_mild       0.0032      0.0010          0.0007      4.25x
+     1D-500      wide_range       0.0022      0.0008          0.0003      7.11x
+
+    1D-2000        constant       0.0072      0.0025          0.0010      7.44x
+    1D-2000      sinusoidal       0.0069      0.0027          0.0014      4.89x
+    1D-2000          abrupt       0.0059      0.0025          0.0010      6.23x
+    1D-2000       tanh_step       0.0058      0.0025          0.0010      6.07x
+    1D-2000       corr_mild       0.0062      0.0025          0.0010      6.15x
+    1D-2000      wide_range       0.0058      0.0024          0.0010      6.09x
+
+    1D-5000        constant       0.0136      0.0058          0.0023      6.00x
+    1D-5000      sinusoidal       0.0137      0.0060          0.0023      5.98x
+    1D-5000          abrupt       0.0160      0.0068          0.0025      6.48x
+    1D-5000       tanh_step       0.0135      0.0058          0.0026      5.18x
+    1D-5000       corr_mild       0.0135      0.0060          0.0023      5.89x
+    1D-5000      wide_range       0.0136      0.0059          0.0022      6.07x
+
+      50×50        constant       0.1156      0.0188          0.0116      9.94x
+      50×50      sinusoidal       0.1194      0.0145          0.0103     11.61x
+      50×50          abrupt       0.1268      0.0199          0.0135      9.38x
+      50×50       tanh_step       0.1167      0.0145          0.0102     11.49x
+      50×50       corr_mild       0.1225      0.0189          0.0178      6.89x
+      50×50      wide_range       0.0977      0.0224          0.0109      8.99x
+      50×50       abrupt_45       0.1246      0.0156          0.0109     11.46x
+      50×50      disk_thick       0.1246      0.0231          0.0108     11.57x
+
+    100×100        constant       0.7801      0.1419          0.1180      6.61x
+    100×100      sinusoidal       0.7611      0.1362          0.0998      7.63x
+    100×100          abrupt       0.8089      0.1271          0.1039      7.78x
+    100×100       tanh_step       0.7059      0.1027          0.0951      7.42x
+    100×100       corr_mild       0.7675      0.1254          0.1242      6.18x
+    100×100      wide_range       0.7758      0.1652          0.0848      9.15x
+    100×100       abrupt_45       0.7694      0.1567          0.1169      6.58x
+    100×100      disk_thick       0.7464      0.1362          0.1235      6.05x
+
+    200×200        constant       7.2202      0.8635          0.7040     10.26x
+    200×200      sinusoidal       7.2533      0.7883          0.6929     10.47x
+    200×200          abrupt       7.1328      0.7914          0.7179      9.94x
+    200×200       tanh_step       7.1160      0.7663          0.7392      9.63x
+    200×200       corr_mild       7.3158      0.7815          0.6396     11.44x
+    200×200      wide_range       7.1406      0.8107          0.6504     10.98x
+    200×200       abrupt_45       7.2447      0.8238          0.7296      9.93x
+    200×200      disk_thick       7.4319      0.8500          0.7157     10.38x
+
+--- LU cache (run() path) ---
+
+LU cache  (run() path, repeated solves, load-only changes)
+  n_solves = 10
+     grid      Te profile   t_False(s)   t_True(s)   t_no_check(s)   speedup
+---------  --------------  -----------  ----------  --------------  --------
+     1D-500        constant       0.0029      0.0015          0.0010      2.82x
+     1D-500      sinusoidal       0.0025      0.0017          0.0019      1.28x
+     1D-500          abrupt       0.0036      0.0015          0.0026      1.40x
+     1D-500       tanh_step       0.0055      0.0014          0.0010      5.42x
+     1D-500       corr_mild       0.0025      0.0013          0.0010      2.54x
+     1D-500      wide_range       0.0027      0.0013          0.0010      2.69x
+
+    1D-2000        constant       0.0067      0.0032          0.0017      3.84x
+    1D-2000      sinusoidal       0.0066      0.0032          0.0018      3.73x
+    1D-2000          abrupt       0.0067      0.0032          0.0019      3.55x
+    1D-2000       tanh_step       0.0067      0.0033          0.0019      3.52x
+    1D-2000       corr_mild       0.0069      0.0034          0.0019      3.70x
+    1D-2000      wide_range       0.0067      0.0033          0.0019      3.48x
+
+    1D-5000        constant       0.0162      0.0080          0.0047      3.45x
+    1D-5000      sinusoidal       0.0202      0.0147          0.0049      4.13x
+    1D-5000          abrupt       0.0157      0.0082          0.0046      3.39x
+    1D-5000       tanh_step       0.0161      0.0085          0.0047      3.43x
+    1D-5000       corr_mild       0.0158      0.0083          0.0047      3.35x
+    1D-5000      wide_range       0.0205      0.0149          0.0048      4.29x
+
+      50×50        constant       0.1041      0.0256          0.0184      5.66x
+      50×50      sinusoidal       0.1372      0.0368          0.0208      6.58x
+      50×50          abrupt       0.1234      0.0233          0.0142      8.70x
+      50×50       tanh_step       0.1155      0.0240          0.0147      7.84x
+      50×50       corr_mild       0.1069      0.0182          0.0157      6.80x
+      50×50      wide_range       0.1105      0.0231          0.0206      5.35x
+      50×50       abrupt_45       0.1044      0.0260          0.0168      6.20x
+      50×50      disk_thick       0.1239      0.0213          0.0267      4.65x
+
+    100×100        constant       0.8163      0.1421          0.1204      6.78x
+    100×100      sinusoidal       0.8493      0.1446          0.1019      8.33x
+    100×100          abrupt       0.9252      0.1236          0.1004      9.21x
+    100×100       tanh_step       0.8471      0.1349          0.1174      7.21x
+    100×100       corr_mild       0.9329      0.1428          0.1329      7.02x
+    100×100      wide_range       0.8764      0.1417          0.0994      8.81x
+    100×100       abrupt_45       0.9337      0.1475          0.1302      7.17x
+    100×100      disk_thick       0.9149      0.1563          0.1066      8.58x
+
+    200×200        constant       6.9730      0.8522          0.6953     10.03x
+    200×200      sinusoidal       6.3133      0.6703          0.6696      9.43x
+    200×200          abrupt       6.6620      0.7424          0.6813      9.78x
+    200×200       tanh_step       7.1685      0.8603          0.6761     10.60x
+    200×200       corr_mild       7.2699      0.8145          0.7500      9.69x
+    200×200      wide_range       7.3205      0.8270          0.6844     10.70x
+    200×200       abrupt_45       7.2327      0.8309          0.7395      9.78x
+    200×200      disk_thick       6.9408      0.8412          0.6944      9.99x
+
+--- Te sweep ---
+
+Te sweep  (repeated solves, scalar Te changes each call — full rebuild)
+  n_solves = 10  |  Te range: 10–80 km
+     grid   t_False(s)   t_True(s)   t_no_check(s)
+---------  -----------  ----------  --------------
+     1D-500       0.0051      0.0078          0.0063
+    1D-2000       0.0132      0.0120          0.0107
+    1D-5000       0.0243      0.0306          0.0233
+
+      50×50       0.1139      0.1202          0.1033
+    100×100       0.7671      0.7476          0.6863
+    200×200       5.4837      5.1537          5.6706
+
